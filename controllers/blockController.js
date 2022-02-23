@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const Block = require("./../../models/blockModel");
+const Block = require("../models/blockModel");
 
 app.use(express.urlencoded({ extended: true }));
 

@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const User = require("./../../models/userModel");
+const User = require("../models/userModel");
 const methodOverride = require("method-override");
 const jwt = require("jsonwebtoken");
 
