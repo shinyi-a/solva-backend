@@ -70,6 +70,27 @@ app.get("/user/:id", async (req, res) => {
   res.send(hdb);
 });
 
+//get all under construction blocks under current user
+app.get("/construction/:id", async (req, res) => {
+  const { id } = req.params;
+  const hdb = await Block.find({ status: "Construction", email: id }).sort({
+    constructiondate: 1,
+  });
+  res.send(hdb);
+});
+
+//get all waiting for testing commissioning blocks under current user
+app.get("/tnc/:id", async (req, res) => {
+  const { id } = req.params;
+  const hdb = await Block.find({
+    status: "Testing and Commissioning",
+    email: id,
+  }).sort({
+    tncdate: 1,
+  });
+  res.send(hdb);
+});
+
 //use this for view sorting/graph in user detail page or block status page - stretch goal
 //to find the pending blocks under the specific project manager
 // app.get("/user/:id/pending", async (req, res) => {

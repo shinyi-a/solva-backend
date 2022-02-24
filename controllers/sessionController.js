@@ -34,11 +34,13 @@ app.post("/", async (req, res) => {
       {
         sub: user.email,
         role: user.usertype,
+        firstname: user.firstname,
+        userid: user._id,
       },
       process.env.SECRET,
       { expiresIn: "1h", algorithm: "HS256" }
     );
-    console.log("token generated:", token);
+    console.log("token generated:", token); //i think this is the refresh token
     return res.send({ token });
   } catch (error) {
     console.log(error.message);

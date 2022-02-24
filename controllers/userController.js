@@ -44,12 +44,14 @@ app.get("/auditor", async (req, res) => {
   }
 });
 
-//get all users, staff and auditors
+//get all users, staff and auditors, do not include admin account (this is frontend for the admin to see)
 app.get("/all", async (req, res) => {
   console.log("User Controller: Trying to get users");
   // console.log(req.context);
   try {
-    const users = await User.find();
+    const users = await User.find({
+      $or: [{ usertype: "Staff" }, { usertype: "Auditor" }],
+    });
     // console.log(users);
     res.send(users);
   } catch (err) {
