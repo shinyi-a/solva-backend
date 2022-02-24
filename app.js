@@ -8,7 +8,7 @@ const CORS_WHITELIST = process.env.CORS_WHITELIST.split(",");
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(express.static("public"));
+// app.use(express.static("public"));
 app.use(methodOverride("_method"));
 app.use(
   cors({
