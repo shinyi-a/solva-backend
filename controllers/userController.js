@@ -35,7 +35,23 @@ app.get("/auditor", async (req, res) => {
   console.log("User Controller: Trying to get users");
   // console.log(req.context);
   try {
-    const users = await User.find({ usertype: "Auditor" });
+    const users = await User.find({
+      $and: [{ usertype: "Auditor" }, { demo: false }],
+    });
+    // console.log(users);
+    res.send(users);
+  } catch (err) {
+    res.status(500).send("Unexpected error has occured while retreiving users");
+    return;
+  }
+});
+
+//get all demo accounts
+app.get("/demo", async (req, res) => {
+  console.log("User Controller: Trying to get users");
+  // console.log(req.context);
+  try {
+    const users = await User.find({ demo: true });
     // console.log(users);
     res.send(users);
   } catch (err) {
@@ -50,7 +66,10 @@ app.get("/all", async (req, res) => {
   // console.log(req.context);
   try {
     const users = await User.find({
-      $or: [{ usertype: "Staff" }, { usertype: "Auditor" }],
+      $and: [
+        { $or: [{ usertype: "Staff" }, { usertype: "Auditor" }] },
+        { demo: false },
+      ],
     });
     // console.log(users);
     res.send(users);

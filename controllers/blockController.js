@@ -143,7 +143,9 @@ app.post("/", async (req, res) => {
     const hdb = await Block.create(req.body);
     res.send(hdb);
   } catch (error) {
+    console.log("this is er");
     console.log(error);
+    res.status("E11000");
   }
 });
 

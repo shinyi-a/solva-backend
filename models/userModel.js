@@ -33,6 +33,9 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    demo: {
+      type: Boolean,
+    },
   },
   {
     timestamps: true,

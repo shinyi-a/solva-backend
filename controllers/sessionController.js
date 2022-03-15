@@ -44,6 +44,7 @@ app.post("/", async (req, res) => {
     return res.send({ token });
   } catch (error) {
     console.log(error.message);
+    res.status(500).send("Something broke!");
   }
 });
 
